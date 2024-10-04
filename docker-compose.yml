@@ -1,7 +1,7 @@
 version: '3.2'
 services:
   keycloak:
-    image: quay.io/keycloak/keycloak:20.0.0
+    image: quay.io/keycloak/keycloak:26.0.0
     command: start-dev
     environment:
       KC_DB: postgres
@@ -13,6 +13,9 @@ services:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
       KEYCLOAK_JDBC_PARAMS: 'sslmode=require'
+      KEYCLOAK_IMPORT: /opt/jboss/keycloak/standalone/configuration/realm-export.json
+    volumes:
+      - ./realm-export.json:/opt/jboss/keycloak/standalone/configuration/realm-export.json
     ports:
       - "9090:8080"
     depends_on:
@@ -47,6 +50,17 @@ services:
     volumes:
       - redis_data:/data
 
+  service-db:
+    image: postgres:16.2-alpine
+    environment:
+      POSTGRES_USER: vztv
+      POSTGRES_PASSWORD: vztv
+      PGPORT: "5431"
+    ports:
+      - "5431:5431"
+    volumes:
+      - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+    restart: unless-stopped
 volumes:
   postgres_data:
   redis_data:

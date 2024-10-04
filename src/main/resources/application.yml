@@ -1,4 +1,18 @@
 spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: myclient
+            client-secret: vkaOniwWbz7hfPVHqN3mcMpabUGrFwS6
+            scope: openid, profile
+            authorization-grant-type: authorization_code
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:9090/realms/myrealm
+            user-name-attribute: preferred_username
+            redirect-uti: http://localhost:8080
   application:
     name: studythumeleaf
   datasource:
@@ -15,4 +29,9 @@ spring:
     show-sql: false
 server:
   use-forward-headers: true
-  port: 8081
+  port: 8080
+keycloak:
+  server-url: http://localhost:9090/auth
+  realm: myrealm
+  username: admin
+  password: admin
