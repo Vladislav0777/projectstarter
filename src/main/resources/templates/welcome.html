@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.
+thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-
+springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+    <div class="container text-center">
+        <div>
+            <h1>Welcome to Inventory App</h1>
+        </div>
+        <h2 th:inline="text">You are an authenticated user:
+            <span th:remove="tag" sec:authentication="name">thymeleaf</span>!
+        </h2>
+        <div class="p-2">
+            <form th:action="@{/logout}" method="get"
+                  style="max-width: 600px; margin: 0 auto;">
+                <div class="text-center p-3">
+                    <button type="submit" class="btn btn-primary">Выйти</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
