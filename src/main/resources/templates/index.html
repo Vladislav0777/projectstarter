@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+    <div class="container text-center">
+        <div>
+            <h1>Welcome to Inventory App</h1>
+        </div>
+        <div class="p-2">
+            <a class="h2" th:href="@{/categories}">List categories</a>
+        </div>
+        <div class="p-2">
+            <a class="h2" th:href="@{/categories/new}">Create category</a>
+        </div>
+        <div class="p-2">
+            <a class="h2" th:href="@{/products}">List products</a>
+        </div>
+        <div class="p-2">
+            <a class="h2" th:href="@{/products/new}">Create product</a>
+        </div>
+        <div class="p-2">
+            <a class="h2" th:href="@{/brands}">List Brands</a>
+        </div>
+        <div class="p-2">
+            <a class="h2" th:href="@{/brands/new}">Create Brand</a>
+        </div>
+        <div class="p-2">
+            <form th:action="@{/logout}" method="get"
+                  style="max-width: 600px; margin: 0 auto;">
+                <div class="text-center p-3">
+                    <button type="submit" class="btn btn-primary">Выйти</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+spring:
+  security:
+    saml2:
+      login:
+        assertion-consumer-service:
+          location: http://localhost:8081/studythymeleaf/sso
+        entity-id: studythymeleaf
+      identity-provider:
+        metadata-location: classpath:crowd.jks-metadata.xml
+      relying-party:
+        registration:
+          studythymeleaf:
+            identity-provider:
+              entity-id: http://localhost:8095/crowd.jks/sso
+              single-sign-on-service:
+                binding: POST
+                location: http://localhost:8095/crowd.jks/sso
+            assertion-consumer-service:
+              binding: POST
+              location: http://localhost:8081/studythymeleaf/sso
+  application:
+    name: studythumeleaf
+  datasource:
+    url: jdbc:postgresql://localhost:5431/vztv
+    username: vztv
+    password: vztv
+    driverClassName: org.postgresql.Driver
+  flyway:
+    enabled: true
+    validate-on-migrate: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+server:
+  use-forward-headers: true
+  port: 8081
+
+#crowd.jks related properties
+application:
+  name: studythymeleaf
+  password: test
+  login:
+    url: http://localhost:8095/crowd/
+crowd:
+  server:
+    url: http://localhost:8095/crowd/services/
+session:
+  isauthenticated: session.isauthenticated
+  tokenkey: session.tokenkey
+  validationinterval: 0
+  lastvalidation: session.lastvalidation
